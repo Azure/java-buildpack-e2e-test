@@ -18,9 +18,6 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	<build>
-		<finalName>java17-spring</finalName>
-	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
