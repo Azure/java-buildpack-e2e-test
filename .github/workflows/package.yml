@@ -129,3 +129,56 @@ jobs:
           asset_content_type: application/gzip
         env:
           GITHUB_TOKEN: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
+
+  gradle-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./gradle
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'adopt'
+
+      - name: package
+        run: ./gradlew build
+
+      - name: upload asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./gradle/build/libs/demo-0.0.1-SNAPSHOT.jar
+          asset_name: java17-source-spring-gradle.jar
+          asset_content_type: application/jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
+
+  gradle-source-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: create gz file for gradle
+        run: tar -czvf java-source-spring-gradle.tar.gz -C gradle .
+
+      - name: upload asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./java-source-spring-gradle.tar.gz
+          asset_name: java-source-spring-gradle.tar.gz
+          asset_content_type: application/gzip
+        env:
+          GITHUB_TOKEN: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
