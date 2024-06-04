@@ -148,7 +148,9 @@ jobs:
           distribution: 'adopt'
 
       - name: package
-        run: ./gradlew build
+        run: |
+          chmod +x gradlew
+          ./gradlew build
 
       - name: upload asset
         uses: actions/upload-release-asset@v1
