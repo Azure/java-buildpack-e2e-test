@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.version }}
-          distribution: 'microsoft'
+          distribution: 'adopt'
 
       - name: Set up the Maven dependencies caching
         uses: actions/cache@v3
@@ -85,7 +85,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
-          distribution: 'microsoft'
+          distribution: 'adopt'
 
       - name: Set up the Maven dependencies caching
         uses: actions/cache@v3
