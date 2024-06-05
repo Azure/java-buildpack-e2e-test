@@ -11,6 +11,7 @@ public class DemoApplication {
 	}
 
 	@GetMapping("/check")
-    public String check() {
-        return "Hello World!";
-    }
+    	public String check() {
+       		return "Hello World!";
+    	}
+}
